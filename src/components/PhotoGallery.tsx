@@ -18,6 +18,19 @@ interface PhotoGalleryProps {
 
 type GalleryView = "tour" | "lightbox";
 
+// The reference route uses its own photo IDs. Keep the one documented deep
+// link mapped to our matching zero-based listing photo index.
+const referencePhotoIds: Record<string, number> = { "1024": 24 };
+
+function photoIndexFromUrl(item: string | null, photoCount: number) {
+  if (!item) return 0;
+  const referenceIndex = referencePhotoIds[item];
+  if (referenceIndex !== undefined && referenceIndex < photoCount)
+    return referenceIndex;
+  const index = Number(item);
+  return Number.isInteger(index) && index >= 0 && index < photoCount ? index : 0;
+}
+
 export function PhotoGallery({ photos, title, onSave }: PhotoGalleryProps) {
   const query = new URLSearchParams(window.location.search);
   const queryOpensTour = query.get("modal") === "PHOTO_TOUR_SCROLLABLE";
@@ -25,7 +38,9 @@ export function PhotoGallery({ photos, title, onSave }: PhotoGalleryProps) {
   const [view, setView] = useState<GalleryView | null>(() =>
     queryOpensPhoto ? "lightbox" : queryOpensTour ? "tour" : null
   );
-  const [activePhoto, setActivePhoto] = useState(queryOpensPhoto ? 12 : 0);
+  const [activePhoto, setActivePhoto] = useState(() =>
+    queryOpensPhoto ? photoIndexFromUrl(query.get("modalItem"), photos.length) : 0
+  );
   const [startCategory, setStartCategory] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -66,6 +81,11 @@ export function PhotoGallery({ photos, title, onSave }: PhotoGalleryProps) {
     galleryScrollTopRef.current = 0;
     pendingCategoryScrollRef.current = category !== null;
     setView("tour");
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?modal=PHOTO_TOUR_SCROLLABLE${window.location.hash}`
+    );
   };
 
   const closeTour = () => {
@@ -85,13 +105,34 @@ export function PhotoGallery({ photos, title, onSave }: PhotoGalleryProps) {
     pendingCategoryScrollRef.current = false;
     setActivePhoto(index);
     setView("lightbox");
+    const modalItem = index === 24 ? "1024" : String(index);
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?modal=PHOTO_TOUR_SCROLLABLE&modalItem=${modalItem}${window.location.hash}`
+    );
   };
 
-  const returnToTour = () => setView("tour");
-  const changePhoto = (direction: number) =>
-    setActivePhoto(
-      (index) => (index + direction + photos.length) % photos.length
+  const returnToTour = () => {
+    setView("tour");
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?modal=PHOTO_TOUR_SCROLLABLE${window.location.hash}`
     );
+  };
+  const changePhoto = (direction: number) => {
+    setActivePhoto((index) => {
+      const next = (index + direction + photos.length) % photos.length;
+      const modalItem = next === 24 ? "1024" : String(next);
+      window.history.replaceState(
+        {},
+        "",
+        `${window.location.pathname}?modal=PHOTO_TOUR_SCROLLABLE&modalItem=${modalItem}${window.location.hash}`
+      );
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (!view) return;

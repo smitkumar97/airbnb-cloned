@@ -1,10 +1,17 @@
+import { useCallback, useState } from "react";
 import { listing } from "./data/listing";
-import { ListingDetails } from "./components/ListingContent";
+import { Footer, ListingDetails } from "./components/ListingContent";
 import { PhotoGallery } from "./components/PhotoGallery";
 import { SiteHeader } from "./components/SiteHeader";
+import { Toast } from "./components/Toast";
 
 function App() {
-  const reserve = () => {};
+  const [reserveToastVisible, setReserveToastVisible] = useState(false);
+  const reserve = useCallback(() => setReserveToastVisible(true), []);
+  const dismissReserveToast = useCallback(
+    () => setReserveToastVisible(false),
+    []
+  );
 
   return (
     <div id="top">
@@ -18,9 +25,14 @@ function App() {
       />
       <main className="page-shell" id="main">
         <PhotoGallery photos={listing.photos} title={listing.title} />
-        <ListingDetails />
+        <ListingDetails onReserve={reserve} />
       </main>
-      {/* <Footer /> */}
+      <Footer />
+      <Toast
+        message="You won't be charged yet."
+        visible={reserveToastVisible}
+        onDismiss={dismissReserveToast}
+      />
     </div>
   );
 }

@@ -774,30 +774,33 @@ function ThingsToKnow() {
 }
 
 function NearbySection() {
-  const [start, setStart] = useState(0);
+  const [page, setPage] = useState(0);
+  const staysPerPage = 5;
+  const lastPageStart = Math.max(0, nearbyStays.length - staysPerPage);
+  const start = page === 0 ? 0 : lastPageStart;
+  const visibleStays = nearbyStays.slice(start, start + staysPerPage);
   return (
     <section className="wide-section nearby-section">
       <div className="nearby-heading">
         <h2>More stays nearby</h2>
-        <span>{start === 0 ? 1 : 2} / 2</span>
+        <span aria-live="polite">{page + 1} / 2</span>
         <button
-          disabled={start === 0}
-          onClick={() => setStart(0)}
+          disabled={page === 0}
+          onClick={() => setPage(0)}
           aria-label="Previous stays"
         >
           <ChevronLeft size={18} />
         </button>
         <button
-          disabled={start !== 0}
-          onClick={() => setStart(1)}
+          disabled={page === 1}
+          onClick={() => setPage(1)}
           aria-label="Next stays"
         >
           <ChevronRight size={18} />
         </button>
       </div>
       <div className="nearby-grid">
-        {[0, 1, 2, 3, 4].map((offset) => {
-          const stay = nearbyStays[(start + offset) % nearbyStays.length];
+        {visibleStays.map((stay) => {
           return (
             <article key={stay.title}>
               <div className="nearby-image">
@@ -815,7 +818,7 @@ function NearbySection() {
   );
 }
 
-export function ListingDetails() {
+export function ListingDetails({ onReserve }: { onReserve: () => void }) {
   return (
     <>
       <div className="detail-layout" id="details">
@@ -825,7 +828,7 @@ export function ListingDetails() {
           <AmenitiesSection />
           <AvailabilitySection />
         </div>
-        <BookingCard onReserve={() => {}} />
+        <BookingCard onReserve={onReserve} />
       </div>
       <ReviewSection />
       <LocationSection />
