@@ -27,7 +27,7 @@ function App() {
         <PhotoGallery photos={listing.photos} title={listing.title} />
         <ListingDetails onReserve={reserve} />
       </main>
-      <Footer />
+      {/* <Footer /> */}
       <Toast
         message="You won't be charged yet."
         visible={reserveToastVisible}
