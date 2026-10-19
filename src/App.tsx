@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { listing } from "./data/listing";
-import { Footer, ListingDetails } from "./components/ListingContent";
+import { ListingDetails } from "./components/ListingContent";
 import { PhotoGallery } from "./components/PhotoGallery";
 import { SiteHeader } from "./components/SiteHeader";
 import { Toast } from "./components/Toast";
