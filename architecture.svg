@@ -1,44 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960" role="img" aria-labelledby="title description">
-  <title id="title">Production vacation-rental marketplace architecture</title>
-  <desc id="description">Architecture showing web and mobile clients through CDN and API gateway to marketplace services, storage, search, event processing, observability, and CI/CD.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title description">
+  <title id="title">Airbnb clone implementation and production marketplace architecture</title>
+  <desc id="description">The left panel shows the implemented frontend-only React and Vite clone, its local data and assets, build workflow, and manual QA. The right panel shows a future production-scale vacation rental marketplace with independently scalable services, data stores, and operations.</desc>
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#667085"/></marker>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#667085"/></marker>
     <style>
-      text{font-family:Inter,Arial,sans-serif;fill:#17202d}.title{font-size:28px;font-weight:700}.subtitle{font-size:14px;fill:#667085}.heading{font-size:14px;font-weight:700;letter-spacing:.4px;fill:#344054}.label{font-size:15px;font-weight:650}.small{font-size:12px;fill:#475467}.box{fill:#fff;stroke:#d0d5dd;stroke-width:1.5;rx:12}.blue{fill:#eff8ff;stroke:#84caff}.pink{fill:#fff1f3;stroke:#fda4af}.green{fill:#ecfdf3;stroke:#75e0a7}.purple{fill:#f4f3ff;stroke:#bdb4fe}.line{fill:none;stroke:#667085;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#98a2b3;stroke-width:1.5;stroke-dasharray:6 5;marker-end:url(#arrow)}
+      text{font-family:Inter,Arial,sans-serif;fill:#17202d}.title{font-size:28px;font-weight:700}.subtitle{font-size:14px;fill:#667085}.section{font-size:15px;font-weight:700;letter-spacing:.45px;fill:#344054}.label{font-size:15px;font-weight:650}.small{font-size:12px;fill:#475467}.note{font-size:12px;font-weight:600;fill:#475467}.box{fill:#fff;stroke:#d0d5dd;stroke-width:1.5;rx:12}.blue{fill:#eff8ff;stroke:#84caff}.pink{fill:#fff1f3;stroke:#fda4af}.green{fill:#ecfdf3;stroke:#75e0a7}.purple{fill:#f4f3ff;stroke:#bdb4fe}.panel{fill:#fff;stroke:#d0d5dd;stroke-width:1.5;rx:18}.currentPanel{fill:#f4faff;stroke:#84caff}.futurePanel{fill:#fbfaff;stroke:#c7c3f4}.line{fill:none;stroke:#667085;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#98a2b3;stroke-width:1.5;stroke-dasharray:6 5;marker-end:url(#arrow)}
     </style>
   </defs>
-  <rect width="1440" height="960" fill="#f8fafc"/>
-  <text x="48" y="54" class="title">Vacation-rental marketplace · production architecture</text>
-  <text x="48" y="82" class="subtitle">Scalable browse, search, listing, booking, and payment platform</text>
+  <rect width="1600" height="1040" fill="#f8fafc"/>
+  <text x="48" y="54" class="title">Airbnb clone · current app and production target</text>
+  <text x="48" y="82" class="subtitle">A clear boundary between the submitted frontend implementation and a scalable marketplace architecture</text>
 
-  <text x="48" y="137" class="heading">CLIENTS &amp; EDGE</text>
-  <rect x="48" y="156" width="190" height="78" class="box blue"/><text x="143" y="188" text-anchor="middle" class="label">Web app</text><text x="143" y="211" text-anchor="middle" class="small">React / SSR-ready</text>
-  <rect x="48" y="250" width="190" height="78" class="box blue"/><text x="143" y="282" text-anchor="middle" class="label">Mobile apps</text><text x="143" y="305" text-anchor="middle" class="small">iOS · Android</text>
-  <rect x="300" y="201" width="205" height="82" class="box purple"/><text x="402" y="234" text-anchor="middle" class="label">CDN + WAF</text><text x="402" y="258" text-anchor="middle" class="small">Static assets · TLS · bot rules</text>
-  <rect x="570" y="201" width="225" height="82" class="box purple"/><text x="682" y="234" text-anchor="middle" class="label">API Gateway / BFF</text><text x="682" y="258" text-anchor="middle" class="small">Auth · routing · throttling</text>
-  <path d="M238 195H300M238 289L300 245M505 242H570" class="line"/>
+  <!-- Current submission -->
+  <rect x="40" y="112" width="440" height="884" class="panel currentPanel"/>
+  <text x="68" y="151" class="section">CURRENT SUBMISSION · IMPLEMENTED</text>
+  <text x="68" y="174" class="small">Frontend-only desktop clone · no backend or external database</text>
 
-  <text x="48" y="386" class="heading">DOMAIN SERVICES · INDEPENDENT HORIZONTAL SCALING</text>
-  <rect x="48" y="411" width="200" height="88" class="box pink"/><text x="148" y="445" text-anchor="middle" class="label">Identity</text><text x="148" y="470" text-anchor="middle" class="small">Users · sessions · access</text>
-  <rect x="270" y="411" width="200" height="88" class="box pink"/><text x="370" y="445" text-anchor="middle" class="label">Listing service</text><text x="370" y="470" text-anchor="middle" class="small">Property · photos · host</text>
-  <rect x="492" y="411" width="200" height="88" class="box pink"/><text x="592" y="445" text-anchor="middle" class="label">Search service</text><text x="592" y="470" text-anchor="middle" class="small">Filters · ranking · geo</text>
-  <rect x="714" y="411" width="200" height="88" class="box pink"/><text x="814" y="445" text-anchor="middle" class="label">Booking service</text><text x="814" y="470" text-anchor="middle" class="small">Availability · reservation</text>
-  <rect x="936" y="411" width="200" height="88" class="box pink"/><text x="1036" y="445" text-anchor="middle" class="label">Payment service</text><text x="1036" y="470" text-anchor="middle" class="small">Idempotent authorization</text>
-  <rect x="1158" y="411" width="230" height="88" class="box pink"/><text x="1273" y="445" text-anchor="middle" class="label">Messaging / notifications</text><text x="1273" y="470" text-anchor="middle" class="small">Email · push · host messages</text>
-  <path d="M682 283V355H148V411M682 355H370V411M682 355H592V411M682 355H814V411M682 355H1036V411M682 355H1273V411" class="line"/>
+  <rect x="78" y="206" width="364" height="72" class="box blue"/>
+  <text x="260" y="237" text-anchor="middle" class="label">Desktop browser</text>
+  <text x="260" y="259" text-anchor="middle" class="small">Listing · Photo Tour · Lightbox</text>
 
-  <text x="48" y="555" class="heading">DATA, SEARCH &amp; ASYNC PROCESSING</text>
-  <rect x="48" y="581" width="260" height="100" class="box green"/><text x="178" y="615" text-anchor="middle" class="label">Relational database</text><text x="178" y="641" text-anchor="middle" class="small">Primary + read replicas</text><text x="178" y="660" text-anchor="middle" class="small">Listings · users · bookings</text>
-  <rect x="350" y="581" width="220" height="100" class="box green"/><text x="460" y="615" text-anchor="middle" class="label">Redis cache</text><text x="460" y="641" text-anchor="middle" class="small">Short-lived cache · rate limits</text><text x="460" y="660" text-anchor="middle" class="small">Not reservation authority</text>
-  <rect x="612" y="581" width="230" height="100" class="box green"/><text x="727" y="615" text-anchor="middle" class="label">Search index</text><text x="727" y="641" text-anchor="middle" class="small">Geo · facets · text ranking</text><text x="727" y="660" text-anchor="middle" class="small">Async index refresh</text>
-  <rect x="884" y="581" width="210" height="100" class="box purple"/><text x="989" y="615" text-anchor="middle" class="label">Event stream</text><text x="989" y="641" text-anchor="middle" class="small">Outbox · domain events</text><text x="989" y="660" text-anchor="middle" class="small">Indexing · notifications</text>
-  <rect x="1136" y="581" width="252" height="100" class="box green"/><text x="1262" y="615" text-anchor="middle" class="label">Object storage + image CDN</text><text x="1262" y="641" text-anchor="middle" class="small">Originals · resized variants</text><text x="1262" y="660" text-anchor="middle" class="small">Versioned media URLs</text>
-  <path d="M370 499V540H178V581M370 540H460V581M592 499V540H727V581M814 499V540H178V581M1036 499V540H178V581M370 540H989V581M592 540H989V581M989 581V550H727V581M370 540H1262V581" class="dash"/>
+  <rect x="78" y="314" width="364" height="110" class="box blue"/>
+  <text x="260" y="345" text-anchor="middle" class="label">React 19 + Vite + Tailwind CSS</text>
+  <text x="260" y="370" text-anchor="middle" class="small">SiteHeader · PhotoGallery · BookingCard</text>
+  <text x="260" y="392" text-anchor="middle" class="small">Listing sections · shared toast · dialogs</text>
 
-  <text x="48" y="735" class="heading">OPERATIONS &amp; DELIVERY</text>
-  <rect x="48" y="760" width="390" height="95" class="box"/><text x="243" y="795" text-anchor="middle" class="label">Observability &amp; reliability</text><text x="243" y="821" text-anchor="middle" class="small">Central logs · metrics · traces · SLO alerts</text><text x="243" y="840" text-anchor="middle" class="small">Health checks · audit events · incident response</text>
-  <rect x="478" y="760" width="390" height="95" class="box"/><text x="673" y="795" text-anchor="middle" class="label">CI/CD pipeline</text><text x="673" y="821" text-anchor="middle" class="small">Build · typecheck · test · scan · deploy</text><text x="673" y="840" text-anchor="middle" class="small">Canary rollout · rollback · infrastructure as code</text>
-  <rect x="908" y="760" width="480" height="95" class="box"/><text x="1148" y="795" text-anchor="middle" class="label">Deployment targets</text><text x="1148" y="821" text-anchor="middle" class="small">Edge-hosted frontend · containerized services · managed data</text><text x="1148" y="840" text-anchor="middle" class="small">Multi-zone deployment · backups · disaster recovery</text>
-  <path d="M673 760V716H243V681M673 760V716H1148V681" class="dash"/>
-  <text x="48" y="912" class="small">Key invariant: reservation inventory is revalidated transactionally; cache and search indexes are derived, eventually consistent views.</text>
+  <rect x="78" y="460" width="170" height="104" class="box green"/>
+  <text x="163" y="492" text-anchor="middle" class="label">Typed data</text>
+  <text x="163" y="516" text-anchor="middle" class="small">Listing · reviews</text>
+  <text x="163" y="537" text-anchor="middle" class="small">43 local photos</text>
+  <rect x="272" y="460" width="170" height="104" class="box green"/>
+  <text x="357" y="492" text-anchor="middle" class="label">Local assets</text>
+  <text x="357" y="516" text-anchor="middle" class="small">Airbnb font · logos</text>
+  <text x="357" y="537" text-anchor="middle" class="small">Property images</text>
+  <path d="M260 278V314M200 424V442H163V460M320 442H357V460" class="line"/>
+
+  <rect x="78" y="598" width="364" height="88" class="box purple"/>
+  <text x="260" y="630" text-anchor="middle" class="label">Build gate</text>
+  <text x="260" y="654" text-anchor="middle" class="small">npm ci → tsc -b → vite build</text>
+  <path d="M260 564V598" class="line"/>
+
+  <rect x="78" y="718" width="364" height="98" class="box purple"/>
+  <text x="260" y="750" text-anchor="middle" class="label">Manual browser QA</text>
+  <text x="260" y="774" text-anchor="middle" class="small">Desktop screenshots · keyboard · focus</text>
+  <text x="260" y="796" text-anchor="middle" class="small">ARIA tree · image/font/network checks</text>
+  <path d="M260 686V718" class="line"/>
+
+  <rect x="78" y="848" width="364" height="92" class="box"/>
+  <text x="260" y="880" text-anchor="middle" class="label">AI workflow configuration</text>
+  <text x="260" y="904" text-anchor="middle" class="small">.claude agents: UI · code quality · structure</text>
+  <text x="260" y="924" text-anchor="middle" class="small">Prompt log and QA checklist in repository</text>
+
+  <!-- Future production target -->
+  <rect x="510" y="112" width="1050" height="884" class="panel futurePanel"/>
+  <text x="538" y="151" class="section">FUTURE PRODUCTION-SCALE MARKETPLACE · TARGET</text>
+  <text x="538" y="174" class="small">Services and managed infrastructure are architectural recommendations, not part of this clone.</text>
+
+  <rect x="545" y="211" width="176" height="80" class="box blue"/>
+  <text x="633" y="245" text-anchor="middle" class="label">Web + mobile</text>
+  <text x="633" y="269" text-anchor="middle" class="small">SSR/SPA · native apps</text>
+  <rect x="758" y="211" width="186" height="80" class="box purple"/>
+  <text x="851" y="245" text-anchor="middle" class="label">CDN + WAF</text>
+  <text x="851" y="269" text-anchor="middle" class="small">Static/media edge · TLS</text>
+  <rect x="981" y="211" width="212" height="80" class="box purple"/>
+  <text x="1087" y="245" text-anchor="middle" class="label">API Gateway / BFF</text>
+  <text x="1087" y="269" text-anchor="middle" class="small">Auth · routing · throttling</text>
+  <path d="M721 251H758M944 251H981" class="line"/>
+
+  <text x="545" y="337" class="section">INDEPENDENT DOMAIN SERVICES</text>
+  <rect x="545" y="359" width="178" height="82" class="box pink"/>
+  <text x="634" y="392" text-anchor="middle" class="label">Identity</text><text x="634" y="416" text-anchor="middle" class="small">Users · sessions</text>
+  <rect x="737" y="359" width="178" height="82" class="box pink"/>
+  <text x="826" y="392" text-anchor="middle" class="label">Listings</text><text x="826" y="416" text-anchor="middle" class="small">Properties · hosts</text>
+  <rect x="929" y="359" width="178" height="82" class="box pink"/>
+  <text x="1018" y="392" text-anchor="middle" class="label">Search</text><text x="1018" y="416" text-anchor="middle" class="small">Geo · filters · ranking</text>
+  <rect x="1121" y="359" width="178" height="82" class="box pink"/>
+  <text x="1210" y="392" text-anchor="middle" class="label">Booking</text><text x="1210" y="416" text-anchor="middle" class="small">Availability · reserve</text>
+  <rect x="1313" y="359" width="205" height="82" class="box pink"/>
+  <text x="1415" y="392" text-anchor="middle" class="label">Payments + messaging</text><text x="1415" y="416" text-anchor="middle" class="small">Idempotent · async</text>
+  <path d="M1087 291V326H634V359M826 326V359M1018 326V359M1210 326V359M1415 326V359" class="line"/>
+
+  <text x="545" y="489" class="section">DATA &amp; EVENT-DRIVEN WORKFLOWS</text>
+  <rect x="545" y="512" width="222" height="100" class="box green"/>
+  <text x="656" y="545" text-anchor="middle" class="label">Relational database</text><text x="656" y="570" text-anchor="middle" class="small">Source of truth · replicas</text><text x="656" y="590" text-anchor="middle" class="small">Listings · users · bookings</text>
+  <rect x="791" y="512" width="194" height="100" class="box green"/>
+  <text x="888" y="545" text-anchor="middle" class="label">Redis</text><text x="888" y="570" text-anchor="middle" class="small">Short-lived cache</text><text x="888" y="590" text-anchor="middle" class="small">Never booking authority</text>
+  <rect x="1009" y="512" width="194" height="100" class="box green"/>
+  <text x="1106" y="545" text-anchor="middle" class="label">Search index</text><text x="1106" y="570" text-anchor="middle" class="small">Geo · facets · text</text><text x="1106" y="590" text-anchor="middle" class="small">Async refresh</text>
+  <rect x="1227" y="512" width="130" height="100" class="box purple"/>
+  <text x="1292" y="545" text-anchor="middle" class="label">Event bus</text><text x="1292" y="570" text-anchor="middle" class="small">Outbox</text><text x="1292" y="590" text-anchor="middle" class="small">Events</text>
+  <rect x="1381" y="512" width="137" height="100" class="box green"/>
+  <text x="1449" y="545" text-anchor="middle" class="label">Object store</text><text x="1449" y="570" text-anchor="middle" class="small">Media + CDN</text><text x="1449" y="590" text-anchor="middle" class="small">Variants</text>
+  <path d="M826 441V475H656V512M1210 441V475H656V512M826 475H888V512M1018 441V475H1106V512M1210 475H1292V512M826 475H1449V512M1292 512V479H1106V512" class="dash"/>
+
+  <text x="545" y="659" class="section">RELIABILITY, DELIVERY &amp; SECURITY</text>
+  <rect x="545" y="682" width="292" height="104" class="box"/>
+  <text x="691" y="716" text-anchor="middle" class="label">Observability</text><text x="691" y="741" text-anchor="middle" class="small">Logs · metrics · traces · SLO alerts</text><text x="691" y="763" text-anchor="middle" class="small">Health checks · incident response</text>
+  <rect x="860" y="682" width="292" height="104" class="box"/>
+  <text x="1006" y="716" text-anchor="middle" class="label">CI/CD + infrastructure as code</text><text x="1006" y="741" text-anchor="middle" class="small">Typecheck · automated tests · security scan</text><text x="1006" y="763" text-anchor="middle" class="small">Canary rollout · rollback</text>
+  <rect x="1175" y="682" width="343" height="104" class="box"/>
+  <text x="1346" y="716" text-anchor="middle" class="label">Multi-zone deployment</text><text x="1346" y="741" text-anchor="middle" class="small">Edge frontend · container services</text><text x="1346" y="763" text-anchor="middle" class="small">Managed stores · backups · recovery</text>
+
+  <rect x="545" y="824" width="973" height="92" class="box blue"/>
+  <text x="1031" y="858" text-anchor="middle" class="label">Critical booking invariant</text>
+  <text x="1031" y="883" text-anchor="middle" class="small">Revalidate inventory transactionally; use idempotent payment authorization. Cache and search are derived views.</text>
+  <path d="M1006 786V805H1031V824M1346 786V805H1031" class="dash"/>
+
+  <text x="48" y="1020" class="note">Solid arrows: request/data flow · dashed arrows: asynchronous or operational flow · production systems shown at right are future-state recommendations.</text>
 </svg>
